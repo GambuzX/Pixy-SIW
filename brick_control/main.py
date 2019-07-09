@@ -13,12 +13,12 @@ blueConn = bluetoothConnection.BluetoothConnection(ID)
 brick = blueConn.connect()
 
 #do stuff with sound
-#soundCtrl = soundControl.SoundControl(brick)
-#soundCtrl.playSong()
+soundCtrl = soundControl.SoundControl(brick)
+soundCtrl.playSuperMario()
 
 #rotate robot
-motor = motorControl.MotorControl(brick, 127)
+#motor = motorControl.MotorControl(brick, 127)
 
-motor.move(5000, 1)
-motor.spinAround(5000)
-motor.move(5000, -1)
+#motor.move(5000, 1)
+#motor.spinAround(5000)
+#motor.move(5000, -1)
