@@ -3,20 +3,33 @@ import threading
 
 class MotorControl(object):
 
-	def __init__(self, brick):
+	def __init__(self, brick, power):
 		self.brick = brick
+		self.power = power
 
-	def spinAround(self):
-		t1 = threading.Thread(target=self.turnMotor, args=(PORT_C, 100, 720,))
-		t2 = threading.Thread(target=self.turnMotor, args=(PORT_A, -100, 720,))
+	def spinAround(self, degrees):
+		t1 = threading.Thread(target=self.turnMotor, args=(PORT_C, self.power, degrees,))
+		t2 = threading.Thread(target=self.turnMotor, args=(PORT_A, -1 * self.power, degrees,))
 
 		t1.start()
-		#t2.start()
+		t2.start()
 
 		t1.join()
-		#t2.join()
+		t2.join()
 
-	def turnMotor(self, port, power, tacho_units):
+	def move(self, degrees, dir):
+		t1 = threading.Thread(target=self.turnMotor, args=(PORT_A, self.power * dir, degrees,))
+		t2 = threading.Thread(target=self.turnMotor, args=(PORT_C, self.power * dir, degrees,))
+
+		t1.start()
+		t2.start()
+
+		t1.join()
+		t2.join()
+
+
+
+	def turnMotor(self, port, power, degrees):
 		motor = Motor(self.brick, port)
-		motor.turn(power, tacho_units)
+		motor.turn(power, degrees)
 
