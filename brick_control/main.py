@@ -6,11 +6,15 @@ import nxt.bluesock
 
 import soundControl
 import bluetoothConnection
+import motorControl
 
 #connect to brick via bluetooth
 blueConn = bluetoothConnection.BluetoothConnection(ID)
-
 brick = blueConn.connect()
 
 #do stuff with sound
-soundCtrl = soundControl.SoundControl(brick).playSong()
+#soundCtrl = soundControl.SoundControl(brick)
+#soundCtrl.playSong()
+
+#rotate robot
+motorControl.MotorControl(brick).spinAround()
