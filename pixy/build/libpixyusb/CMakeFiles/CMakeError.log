@@ -1,0 +1,51 @@
+Determining if the pthread_create exist failed with the following output:
+Change Dir: /home/pi/pixy/build/libpixyusb/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_18efa/fast"
+/usr/bin/make -f CMakeFiles/cmTC_18efa.dir/build.make CMakeFiles/cmTC_18efa.dir/build
+make[1]: Entering directory '/home/pi/pixy/build/libpixyusb/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_18efa.dir/CheckSymbolExists.cxx.o
+/usr/bin/c++     -o CMakeFiles/cmTC_18efa.dir/CheckSymbolExists.cxx.o -c /home/pi/pixy/build/libpixyusb/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx
+Linking CXX executable cmTC_18efa
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_18efa.dir/link.txt --verbose=1
+/usr/bin/c++       -rdynamic CMakeFiles/cmTC_18efa.dir/CheckSymbolExists.cxx.o  -o cmTC_18efa 
+/usr/bin/ld: CMakeFiles/cmTC_18efa.dir/CheckSymbolExists.cxx.o: in function `main':
+CheckSymbolExists.cxx:(.text+0x38): undefined reference to `pthread_create'
+collect2: error: ld returned 1 exit status
+make[1]: *** [CMakeFiles/cmTC_18efa.dir/build.make:87: cmTC_18efa] Error 1
+make[1]: Leaving directory '/home/pi/pixy/build/libpixyusb/CMakeFiles/CMakeTmp'
+make: *** [Makefile:121: cmTC_18efa/fast] Error 2
+
+File /home/pi/pixy/build/libpixyusb/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:
+/* */
+#include <pthread.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef pthread_create
+  return ((int*)(&pthread_create))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/pi/pixy/build/libpixyusb/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_3c942/fast"
+/usr/bin/make -f CMakeFiles/cmTC_3c942.dir/build.make CMakeFiles/cmTC_3c942.dir/build
+make[1]: Entering directory '/home/pi/pixy/build/libpixyusb/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_3c942.dir/CheckFunctionExists.cxx.o
+/usr/bin/c++    -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_3c942.dir/CheckFunctionExists.cxx.o -c /home/pi/pixy/build/libpixyusb/CMakeFiles/CheckLibraryExists/CheckFunctionExists.cxx
+Linking CXX executable cmTC_3c942
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_3c942.dir/link.txt --verbose=1
+/usr/bin/c++   -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_3c942.dir/CheckFunctionExists.cxx.o  -o cmTC_3c942 -lpthreads 
+/usr/bin/ld: cannot find -lpthreads
+collect2: error: ld returned 1 exit status
+make[1]: *** [CMakeFiles/cmTC_3c942.dir/build.make:87: cmTC_3c942] Error 1
+make[1]: Leaving directory '/home/pi/pixy/build/libpixyusb/CMakeFiles/CMakeTmp'
+make: *** [Makefile:121: cmTC_3c942/fast] Error 2
+
+
