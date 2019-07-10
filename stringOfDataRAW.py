@@ -1,29 +1,40 @@
-def returnStringOfDataRAW (dataRaw) :
-    float width, height, xCord, yCord;
-    for line in dataRaw:
-        for word in line.split():
-           if (word = 'WIDTH') #width
-           {
-               word += 2
-               width = word
-               while(word != '0')
-               {
-                   word ++
-                   width * 10
-                   width + word
-                   }
-               }
-           else if (word = 'HEIGHT') #height
-           {
-               word += 2
-               width = word
-               while(word != '0')
-               {
-                   word ++
-                   width * 10
-                   width + word
-                   }
-               }
-    for(int i = 0; i < nLines; i++)
+import re
+
+class Object:
+    width = 0
+    height = 0
+    x = 0
+    y = 0
+    signature = 0
+    def __init__(self, signature, width, height, x, y):
+        self.width = width
+        self.height = height
+        self.x = x
+        self.y = y    
         
-    print(dataRaw)
+
+def filter(frame):
+    for object in frame:
+        if object.signature == '4':
+            print ("Green")
+            
+        
+def processFrame (objectsFromFrame = []):
+    
+    frame = []
+    for line in objectFromFrame:
+        objectAttributeList = re.findall(r'[0-9]+', line))
+        object = Object(objectAttributeList[0],objectAttributeList[1],
+                        objectAttributeList[2],objectAttributeList[3])
+    frame.append(object)
+    return frame
+
+    
+        
+    #print(dataRaw)
+
+
+frame = processFrame()
+
+filter(frame)
+    
