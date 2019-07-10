@@ -1,14 +1,17 @@
 [Unit]
-Description=Start pixy C bin
+Description=Start pixy python script
 After=network.target
 StartLimitIntervalSec=0
+Requires=pixyc.service
 
 [Service]
 Type=simple
 Restart=always
 RestartSec=1
 User=pi
-ExecStart=/home/pi/pixy
+#ExecStart=/bin/python /home/pi/pixy.py
+ExecStart=/usr/bin/python /home/pi/src/Pixy-SIW/daemon/test.py
+ExecStartPre=/bin/sleep 30
 
 [Install]
 WantedBy=multi-user.target
