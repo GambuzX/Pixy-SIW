@@ -1,0 +1,15 @@
+[Unit]
+Description=Start pixy python script
+After=network.target
+StartLimitIntervalSec=0
+Requires=pixyc.service
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=pi
+ExecStart=/bin/python /home/pi/pixy.py
+
+[Install]
+WantedBy=multi-user.target
