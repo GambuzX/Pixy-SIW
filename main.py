@@ -1,7 +1,7 @@
 import re
 import os
 import errno
-
+import threading
 import nxt.locator
 import brick_control.soundControl as soundControl
 import brick_control.bluetoothConnection as bluetoothConnection
@@ -9,12 +9,12 @@ import brick_control.motorControl as motorControl
 from high_leds import * 
 ID = '00:16:53:0C:93:59'
 FIFO = '/tmp/pixy'
-
+running_events = False
 
 
 #connect to brick via bluetooth
 #blueConn = bluetoothConnection.BluetoothConnection(ID)
-#brick = nxt.locator.find_one_brick()
+brick = nxt.locator.find_one_brick()
 
 #rotate robot
 #motor = motorControl.MotorControl(brick, 127)
@@ -37,13 +37,16 @@ class Object:
         
 
 def filter(frame):
+    global running_events
+        
     for object in frame:
         if object.signature == '4':
             #do stuff with sound
             blue_action()
             soundCtrl = soundControl.SoundControl(brick)
-            soundCtrl.playDarude()
-
+            soundCtrl.playSuperMario()
+    running_events = False
+    
 
             
         
@@ -83,9 +86,11 @@ with open(FIFO) as fifo:
             break
         
         #.decode("utf-8")
-        frame = processFrame(data.split('\n'))
-        filter(frame)
-
+        if running_events == False:
+            running_events = True
+            frame = processFrame(data.split('\n'))
+            x = threading.Thread(target=filter, args=(frame,))
+            x.start()
 
 
 
