@@ -10,7 +10,8 @@ class Object:
         self.width = width
         self.height = height
         self.x = x
-        self.y = y    
+        self.y = y
+        self.signature = signature
         
 
 def filter(frame):
@@ -22,10 +23,11 @@ def filter(frame):
 def processFrame (objectsFromFrame = []):
     
     frame = []
-    for line in objectFromFrame:
-        objectAttributeList = re.findall(r'[0-9]+', line))
+    for line in objectsFromFrame:
+        objectAttributeList = re.findall(r'[0-9]+', line)
         object = Object(objectAttributeList[0],objectAttributeList[1],
-                        objectAttributeList[2],objectAttributeList[3])
+                        objectAttributeList[2],objectAttributeList[3],
+                        objectAttributeList[4])
     frame.append(object)
     return frame
 
@@ -34,7 +36,7 @@ def processFrame (objectsFromFrame = []):
     #print(dataRaw)
 
 
-frame = processFrame()
+frame = processFrame(["4;3;4;3;4"])
 
 filter(frame)
     
