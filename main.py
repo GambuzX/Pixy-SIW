@@ -8,24 +8,21 @@ import brick_control.motorControl as motorControl
 import brick_control.usbConnection as usbConnection
 from high_leds import *
 
+#global variables
 ID = '00:16:53:0C:93:59'
 FIFO = '/tmp/pixy'
 running_events = False
-
 
 #connect to brick via usb
 usbConn = usbConnection.USBConnection()
 brick = usbConn.connect()
 
 #create sound controller object
-soundCtrl = soundControl.SoundControl(brick)    
+soundCtrl = soundControl.SoundControl(brick)
 
-#rotate robot
-#motor = motorControl.MotorControl(brick, 127)
+#create motor controller object
+motorCtrl = motorControl.MotorControl(brick, 120)
 
-#motor.move(5000, 1)
-#motor.spinAround(5000)
-#motor.move(5000, -1)
 class Object:
     width = 0
     height = 0
@@ -43,12 +40,32 @@ class Object:
 def filter(frame):
     global running_events
     global soundCtrl
+    global motorCtrl
         
     for object in frame:
-        if object.signature == '4':
-            #do stuff with sound
-            blue_action()
+
+        if object.signature == '1':
+            red_action()
+            soundCtrl.playDarude()
+            #mega spin
+
+            #t1 = threading.Thread(target=soundCtrl.playDarude)
+            #t2 = threading.Thread(target=motorCtrl.doSomething, args=(1,2,3,))
+            break
+
+        elif object.signature == '4':
+            green_action()
             soundCtrl.playSuperMario()
+            #danceeee
+            break
+
+        elif object.signature == '6':
+            blue_action()
+            soundCtrl.playSuperMarioUnderworld()
+            #mega run
+            break
+
+
     running_events = False
     
 
