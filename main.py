@@ -129,6 +129,7 @@ except OSError as oe:
 print("Waiting for camera connection")
 with open(FIFO) as fifo:
     print("Camera has been connected")
+    soundCtrl.playNote(500, 1000)
     while True:
         data = fifo.readline()
         if len(data) == 0:
