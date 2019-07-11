@@ -27,6 +27,8 @@ class MotorControl(object):
 		t1.join()
 		t2.join()
 
+	def moveArm(self, degrees, dir):
+		self.turnMotor(PORT_B, self.power * dir, degrees)
 
 
 	def turnMotor(self, port, power, degrees):

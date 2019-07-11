@@ -14,10 +14,11 @@ brick = blueConn.connect()
 
 #do stuff with sound
 soundCtrl = soundControl.SoundControl(brick)
-soundCtrl.playDarude()
+#soundCtrl.playDarude()
 
 #rotate robot
-#motor = motorControl.MotorControl(brick, 127)
+motor = motorControl.MotorControl(brick, 127)
+motor.moveArm(5000, 1)
 
 #motor.move(5000, 1)
 #motor.spinAround(5000)
