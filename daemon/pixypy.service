@@ -8,8 +8,7 @@ Requires=pixyc.service
 Type=simple
 Restart=always
 RestartSec=1
-User=pi
-#ExecStart=/bin/python /home/pi/pixy.py
+User=root
 ExecStart=/usr/bin/python /home/pi/src/Pixy-SIW/main.py
 ExecStartPre=/bin/sleep 3
 

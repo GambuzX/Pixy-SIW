@@ -6,7 +6,7 @@ import brick_control.soundControl as soundControl
 import brick_control.bluetoothConnection as bluetoothConnection
 import brick_control.motorControl as motorControl
 import brick_control.usbConnection as usbConnection
-import leds_control as ledsControl
+import ledsControl
 
 #global variables
 ID = '00:16:53:0C:93:59'
