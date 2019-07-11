@@ -12,10 +12,10 @@ class MotorControl(object):
 		t2 = threading.Thread(target=self.turnMotor, args=(PORT_A, -1 * self.power, degrees,))
 
 		t1.start()
-		t2.start()
+		#t2.start()
 
 		t1.join()
-		t2.join()
+		#t2.join()
 
 	def move(self, degrees, dir):
 		t1 = threading.Thread(target=self.turnMotor, args=(PORT_A, self.power * dir, degrees,))
