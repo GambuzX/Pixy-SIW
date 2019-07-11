@@ -14,11 +14,11 @@ brick = blueConn.connect()
 
 #do stuff with sound
 soundCtrl = soundControl.SoundControl(brick)
-soundCtrl.playSuperMarioUnderworld()
+soundCtrl.play("Mary")
 
 #rotate robot
-motor = motorControl.MotorControl(brick, 127)
-motor.moveArm(5000, 1)
+#motor = motorControl.MotorControl(brick, 127)
+#motor.moveArm(5000, 1)
 
 #motor.move(5000, 1)
 #motor.spinAround(5000)
