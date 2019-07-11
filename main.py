@@ -6,6 +6,7 @@ import brick_control.soundControl as soundControl
 import brick_control.bluetoothConnection as bluetoothConnection
 import brick_control.motorControl as motorControl
 import brick_control.usbConnection as usbConnection
+import leds_control as ledsControl
 from high_leds import *
 
 #global variables
@@ -22,6 +23,10 @@ soundCtrl = soundControl.SoundControl(brick)
 
 #create motor controller object
 motorCtrl = motorControl.MotorControl(brick, 120)
+
+#create leds controller object
+ledsCtrl = ledsControl.LEDsControl(brick)
+
 
 class Object:
     width = 0
@@ -41,7 +46,8 @@ def filter(frame):
     global running_events
     global soundCtrl
     global motorCtrl
-        
+    global ledsCtrl
+    
     for object in frame:
 
         if object.signature == '1':
@@ -64,7 +70,6 @@ def filter(frame):
             soundCtrl.playSuperMarioUnderworld()
             #mega run
             break
-
 
     running_events = False
     

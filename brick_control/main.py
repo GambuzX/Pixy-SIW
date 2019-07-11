@@ -16,8 +16,6 @@ brick = blueConn.connect()
 soundCtrl = soundControl.SoundControl(brick)
 #soundCtrl.play("Darude Sandstorm")
 
-print soundCtrl.freqScale("Super Mario")
-
 #rotate robot
 #motor = motorControl.MotorControl(brick, 127)
 #motor.moveArm(5000, 1)
