@@ -45,13 +45,13 @@ class LEDsControl:
 		global off
 
 	    if row == 1:
-	        turn(self.GR1, on)
+	        self.turn(self.GR1, on)
 	    if row == 2:
-	        turn(self.GR2, on)
+	        self.turn(self.GR2, on)
 	    if row == 3:
-	        turn(self.GR3, on)
+	        self.turn(self.GR3, on)
 	    if row == 4:
-	        turn(self.GW1, on)
+	        self.turn(self.GW1, on)
 
 
 	def turn_row_off(row):
@@ -59,13 +59,13 @@ class LEDsControl:
 		global off
 
 	    if row == 1:
-	        turn(self.GR1, off)
+	        self.turn(self.GR1, off)
 	    if row == 2:
-	        turn(self.GR2, off)
+	        self.turn(self.GR2, off)
 	    if row == 3:
-	        turn(self.GR3, off)
+	        self.turn(self.GR3, off)
 	    if row == 4:
-	        turn(self.GW1, off)
+	        self.turn(self.GW1, off)
 
 
 	def handle_music(music):
@@ -77,21 +77,21 @@ class LEDsControl:
 
 		    if x > 0:
 		    	#turn on first group
-		    	turn_row_on(1)
+		    	self.turn_row_on(1)
 		    if x > 1:
 		    	#turn on second group
-		    	turn_row_on(2)
+		    	self.turn_row_on(2)
 		    if x > 2:
 		    	#turn on third group
-		    	turn_row_on(3)
+		    	self.turn_row_on(3)
 		    if x > 3:
 		    	#turn on fourth group
-		    	turn_row_on(4)
+		    	self.turn_row_on(4)
 
 		    sleep(sleepTimes[i])
 
 		    #turn off everything
-		    turn_row_off(1)
-		    turn_row_off(2)
-		    turn_row_off(3)
-		    turn_row_off(4)
+		    self.turn_row_off(1)
+		    self.turn_row_off(2)
+		    self.turn_row_off(3)
+		    self.turn_row_off(4)
