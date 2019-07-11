@@ -15,6 +15,9 @@ soundCtrl = soundControl.SoundControl(brick)
 ledsCtrl = ledsControl.LEDsControl(brick)
 
 ledsCtrl.turn_row_on(1)
+ledsCtrl.turn_row_on(2)
+ledsCtrl.turn_row_on(3)
+ledsCtrl.turn_row_on(4)
 
 ''''
 t1 = threading.Thread(target=soundCtrl.play, args=("Super Mario",))
