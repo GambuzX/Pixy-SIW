@@ -36,11 +36,11 @@ class LEDsControl:
 		GPIO.output(self.GW1,off)
 
 
-	def turn(letter,state):
+	def turn(self, letter,state):
 		GPIO.output(letter,state)
 
 
-	def turn_row_on(row):
+	def turn_row_on(self, row):
 		global on
 		global off
 
@@ -57,7 +57,7 @@ class LEDsControl:
 		    self.turn(self.GW1, on)
 
 
-	def turn_row_off(row):
+	def turn_row_off(self, row):
 		global on
 		global off
 
@@ -74,7 +74,7 @@ class LEDsControl:
 		    self.turn(self.GW1, off)
 
 
-	def handle_music(music):
+	def handle_music(self, music):
 		ledsToLight = self.soundControl.freqScale(music)
 		sleepTimes = self.soundControl.temposDurations(music)
 
