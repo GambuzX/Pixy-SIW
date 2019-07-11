@@ -1,6 +1,6 @@
 [Unit]
 Description=Start pixy C script
-After=network.target
+After=syslog.target
 StartLimitIntervalSec=0
 
 [Service]
@@ -8,8 +8,7 @@ Type=simple
 Restart=always
 RestartSec=1
 User=root
-ExecStart=/usr/bin/python /home/pi/src/Pixy-SIW/pixycamera
-ExecStartPre=/bin/sleep 3
+ExecStart=/home/pi/src/Pixy-SIW/pixycamera
 
 [Install]
 WantedBy=multi-user.target
