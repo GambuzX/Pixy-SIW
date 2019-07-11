@@ -12,6 +12,8 @@ class LEDsControl:
 	def __init__(self, brick):
 		self.soundControl = SoundControl(brick)
 
+		print "init start"
+
 		self.GR1=11 # group red 1
 		self.GR2=13 # group red 2
 		self.GR3=15 # group red 3
@@ -24,11 +26,19 @@ class LEDsControl:
 		global on
 		global off
 
-		GPIO.setmode(GPIO.BOARD)
-		GPIO.setup(self.GR1,GPIO.OUT)
-		GPIO.setup(self.GR2,GPIO.OUT)
-		GPIO.setup(self.GR3,GPIO.OUT)
-		GPIO.setup(self.GW1,GPIO.OUT)
+		print "setup start"
+
+		try:
+
+			GPIO.setmode(GPIO.BCM)
+			GPIO.setup(self.GR1,GPIO.OUT)
+			GPIO.setup(self.GR2,GPIO.OUT)
+			GPIO.setup(self.GR3,GPIO.OUT)
+			GPIO.setup(self.GW1,GPIO.OUT)
+		
+		except:
+			GPIO.cleanup()
+
 
 		GPIO.output(self.GR1,off)
 		GPIO.output(self.GR2,off)
