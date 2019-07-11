@@ -15,6 +15,7 @@ class LEDsControl:
 		self.GR2=13 # group red 2
 		self.GR3=15 # group red 3
 		self.GW1=16 # group white 1
+		self.GW2=24 # group white 2
 
 		self.setup_leds()
 
@@ -29,6 +30,7 @@ class LEDsControl:
 			GPIO.setup(self.GR2,GPIO.OUT)
 			GPIO.setup(self.GR3,GPIO.OUT)
 			GPIO.setup(self.GW1,GPIO.OUT)
+			GPIO.setup(self.GW2,GPIO.OUT)
 		
 		except:
 			GPIO.cleanup()
@@ -38,6 +40,7 @@ class LEDsControl:
 		GPIO.output(self.GR2,off)
 		GPIO.output(self.GR3,off)
 		GPIO.output(self.GW1,off)
+		GPIO.output(self.GW2,off)
 
 
 	def turn(self, letter,state):
@@ -60,6 +63,9 @@ class LEDsControl:
 		if row == 4:
 		    self.turn(self.GW1, on)
 
+		if row == 5:
+			self.turn(self.GW2, on)
+
 
 	def turn_row_off(self, row):
 		global on
@@ -76,6 +82,9 @@ class LEDsControl:
 
 		if row == 4:
 		    self.turn(self.GW1, off)
+
+		if row == 5:
+			self.turn(self.GW2, off)
 
 
 	def handle_music(self, music):
@@ -98,6 +107,10 @@ class LEDsControl:
 		    	#turn on fourth group
 		    	self.turn_row_on(4)
 
+		    if x > 4:
+		    	#turn on fifth group
+		    	self.turn_row_on(5)
+
 		    sleep(sleepTimes[i])
 
 		    #turn off everything
@@ -105,3 +118,4 @@ class LEDsControl:
 		    self.turn_row_off(2)
 		    self.turn_row_off(3)
 		    self.turn_row_off(4)
+		    self.turn_row_off(5)

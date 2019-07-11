@@ -151,14 +151,15 @@ class SoundControl(object):
 
 	#returns an array with the number of leds to turn on according to the value of frequency
 	def freqScale(self, song):
-		max_leds = 8.0
+		max_leds = 5.0
+		min_leds = 1.0
 		try:
 			freqArray = [self.freq[x] for x in self.songs[song]["freqs"]]
 			noNones = [x for x in freqArray if x is not None]
 			maxVal = max(noNones)
 			minVal = min(noNones)
-			m = max_leds / (maxVal - minVal)
-			b = -max_leds/(maxVal - minVal) * minVal
+			m = (max_leds - min_leds) / (maxVal - minVal)
+			b = min_leds - (max_leds - min_leds)/(maxVal - minVal) * minVal
 
 			return [0 if freq==None else freq * m + b for freq in freqArray]
 		except KeyError:

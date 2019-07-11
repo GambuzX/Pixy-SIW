@@ -50,24 +50,51 @@ def filter(frame):
     for object in frame:
 
         if object.signature == '1':
-            red_action()
-            soundCtrl.playDarude()
+            #red_action()
             #mega spin
 
-            #t1 = threading.Thread(target=soundCtrl.playDarude)
-            #t2 = threading.Thread(target=motorCtrl.doSomething, args=(1,2,3,))
+            t1 = threading.Thread(target=soundCtrl.play, args=("Super Mario", ))
+            t2 = threading.Thread(target=motorCtrl.moveArm, args=(5000, 1))
+            t3 = threading.Thread(target=ledsCtrl.handle_music, args=("Super Mario", ))
+
+            t1.start()
+            t2.start()
+            t3.start()
+
+            t1.join()
+            t2.join()
+            t3.join()
             break
 
         elif object.signature == '4':
-            green_action()
-            soundCtrl.playSuperMario()
-            #danceeee
+            #green_action()
+
+            t1 = threading.Thread(target=soundCtrl.play, args=("Darude Sandstorm", ))
+            t2 = threading.Thread(target=motorCtrl.moveArm, args=(5000, 1))
+            t3 = threading.Thread(target=ledsCtrl.handle_music, args=("Darude Sandstorm", ))
+
+            t1.start()
+            t2.start()
+            t3.start()
+
+            t1.join()
+            t2.join()
+            t3.join()
             break
 
         elif object.signature == '6':
-            blue_action()
-            soundCtrl.playSuperMarioUnderworld()
-            #mega run
+            #blue_action()
+            t1 = threading.Thread(target=soundCtrl.play, args=("Super Mario Underworld", ))
+            t2 = threading.Thread(target=motorCtrl.moveArm, args=(5000, 1))
+            t3 = threading.Thread(target=ledsCtrl.handle_music, args=("Super Mario Underworld", ))
+
+            t1.start()
+            t2.start()
+            t3.start()
+
+            t1.join()
+            t2.join()
+            t3.join()
             break
 
     running_events = False
