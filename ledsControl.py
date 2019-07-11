@@ -15,7 +15,7 @@ class LEDsControl:
 		self.GR2=13 # group red 2
 		self.GR3=15 # group red 3
 		self.GW1=16 # group white 1
-		self.GW2=24 # group white 2
+		self.GW2=18 # group white 2
 
 		self.setup_leds()
 

@@ -54,7 +54,7 @@ def filter(frame):
             #mega spin
 
             t1 = threading.Thread(target=soundCtrl.play, args=("Super Mario", ))
-            t2 = threading.Thread(target=motorCtrl.moveArm, args=(5000, 1))
+            t2 = threading.Thread(target=motorCtrl.moveArm, args=(4000, 1))
             t3 = threading.Thread(target=ledsCtrl.handle_music, args=("Super Mario", ))
 
             t1.start()
@@ -70,7 +70,7 @@ def filter(frame):
             #green_action()
 
             t1 = threading.Thread(target=soundCtrl.play, args=("Darude Sandstorm", ))
-            t2 = threading.Thread(target=motorCtrl.moveArm, args=(5000, 1))
+            t2 = threading.Thread(target=motorCtrl.moveArm, args=(4000, 1))
             t3 = threading.Thread(target=ledsCtrl.handle_music, args=("Darude Sandstorm", ))
 
             t1.start()
@@ -85,7 +85,7 @@ def filter(frame):
         elif object.signature == '6':
             #blue_action()
             t1 = threading.Thread(target=soundCtrl.play, args=("Super Mario Underworld", ))
-            t2 = threading.Thread(target=motorCtrl.moveArm, args=(5000, 1))
+            t2 = threading.Thread(target=motorCtrl.moveArm, args=(4000, 1))
             t3 = threading.Thread(target=ledsCtrl.handle_music, args=("Super Mario Underworld", ))
 
             t1.start()

@@ -10,8 +10,8 @@ Restart=always
 RestartSec=1
 User=pi
 #ExecStart=/bin/python /home/pi/pixy.py
-ExecStart=/usr/bin/python /home/pi/src/Pixy-SIW/daemon/test.py
-ExecStartPre=/bin/sleep 30
+ExecStart=/usr/bin/python /home/pi/src/Pixy-SIW/main.py
+ExecStartPre=/bin/sleep 3
 
 [Install]
 WantedBy=multi-user.target
