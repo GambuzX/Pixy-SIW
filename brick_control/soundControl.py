@@ -163,3 +163,7 @@ class SoundControl(object):
 			return [0 if freq==None else freq * m + b for freq in freqArray]
 		except KeyError:
 			return []
+
+	def temposDurations(self, song):
+		return [1.0/x for x in self.songs[song]["tempos"]]
+
