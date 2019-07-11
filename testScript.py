@@ -1,7 +1,7 @@
 import threading
 import brick_control.soundControl as soundControl
 import brick_control.usbConnection as usbConnection
-import leds_control as ledsControl
+import ledsControl
 
 #connect to brick via usb
 usbConn = usbConnection.USBConnection()

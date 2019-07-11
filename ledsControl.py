@@ -37,35 +37,41 @@ class LEDsControl:
 
 
 	def turn(letter,state):
-	    GPIO.output(letter,state)
+		GPIO.output(letter,state)
 
 
 	def turn_row_on(row):
 		global on
 		global off
 
-	    if row == 1:
-	        self.turn(self.GR1, on)
-	    if row == 2:
-	        self.turn(self.GR2, on)
-	    if row == 3:
-	        self.turn(self.GR3, on)
-	    if row == 4:
-	        self.turn(self.GW1, on)
+		if row == 1:
+		    self.turn(self.GR1, on)
+
+		if row == 2:
+		    self.turn(self.GR2, on)
+
+		if row == 3:
+		    self.turn(self.GR3, on)
+
+		if row == 4:
+		    self.turn(self.GW1, on)
 
 
 	def turn_row_off(row):
 		global on
 		global off
 
-	    if row == 1:
-	        self.turn(self.GR1, off)
-	    if row == 2:
-	        self.turn(self.GR2, off)
-	    if row == 3:
-	        self.turn(self.GR3, off)
-	    if row == 4:
-	        self.turn(self.GW1, off)
+		if row == 1:
+		    self.turn(self.GR1, off)
+
+		if row == 2:
+		    self.turn(self.GR2, off)
+
+		if row == 3:
+		    self.turn(self.GR3, off)
+
+		if row == 4:
+		    self.turn(self.GW1, off)
 
 
 	def handle_music(music):
