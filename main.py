@@ -39,6 +39,21 @@ class Object:
         self.x = x
         self.y = y
         self.signature = signature
+
+def darudeRun(distance):
+    motorCtrl.move(distance, 1)
+    motorCtrl.spinAround(180*6)
+    motorCtrl.move(distance, 1)
+    motorCtrl.spinAround(180*6)
+
+def dance():
+    motorCtrl.spinAround(180)
+    motorCtrl.spinAround(-60)
+    motorCtrl.spinAround(80)
+    motorCtrl.spinAround(-60)
+    motorCtrl.spinAround(20)
+    motorCtrl.spinAround(-160)
+
         
 
 def filter(frame):
@@ -50,11 +65,8 @@ def filter(frame):
     for object in frame:
 
         if object.signature == '1':
-            #red_action()
-            #mega spin
-
             #half spin
-            motorCtrl.spinAround(180)
+            motorCtrl.spinAround(180*6)
 
             t1 = threading.Thread(target=soundCtrl.play, args=("Super Mario", ))
             t2 = threading.Thread(target=motorCtrl.moveArm, args=(4000, 1))
@@ -62,7 +74,6 @@ def filter(frame):
 
             t1.start()
             t2.start()
-            t3.start()
 
             t1.join()
             t2.join()
@@ -70,19 +81,20 @@ def filter(frame):
             break
 
         elif object.signature == '4':
-            #green_action()
-
             t1 = threading.Thread(target=soundCtrl.play, args=("Darude Sandstorm", ))
             t2 = threading.Thread(target=motorCtrl.moveArm, args=(4000, 1))
             t3 = threading.Thread(target=ledsCtrl.handle_music, args=("Darude Sandstorm", ))
+            t4 = threading.Thread(target=darudeRun, args=(5000,))
 
             t1.start()
             t2.start()
             t3.start()
+            t4.start()
 
             t1.join()
             t2.join()
             t3.join()
+            t4.join()
             break
 
         elif object.signature == '6':
@@ -90,14 +102,17 @@ def filter(frame):
             t1 = threading.Thread(target=soundCtrl.play, args=("Super Mario Underworld", ))
             t2 = threading.Thread(target=motorCtrl.moveArm, args=(4000, 1))
             t3 = threading.Thread(target=ledsCtrl.handle_music, args=("Super Mario Underworld", ))
+            t4 = threading.Thread(target=dance)
 
             t1.start()
             t2.start()
             t3.start()
+            t4.start()
 
             t1.join()
             t2.join()
             t3.join()
+            t4.join()
             break
 
     running_events = False
