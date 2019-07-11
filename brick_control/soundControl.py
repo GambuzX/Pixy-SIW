@@ -148,3 +148,18 @@ class SoundControl(object):
 	        self.brick.play_tone_and_wait(note, duration)
 	    else:
 	    	self.brick.play_tone_and_wait(0, duration)
+
+	#returns an array with the number of leds to turn on according to the value of frequency
+	def freqScale(self, song):
+		max_leds = 8.0
+		try:
+			freqArray = [self.freq[x] for x in self.songs[song]["freqs"]]
+			noNones = [x for x in freqArray if x is not None]
+			maxVal = max(noNones)
+			minVal = min(noNones)
+			m = max_leds / (maxVal - minVal)
+			b = -max_leds/(maxVal - minVal) * minVal
+
+			return [0 if freq==None else freq * m + b for freq in freqArray]
+		except KeyError:
+			return []
