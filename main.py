@@ -62,9 +62,9 @@ def filter(frame):
     global motorCtrl
     global ledsCtrl
     
-    for object in frame:
+    for obj in frame:
 
-        if object.signature == '1':
+        if obj.signature == '1':
             #half spin
             motorCtrl.spinAround(180*6)
 
@@ -74,13 +74,14 @@ def filter(frame):
 
             t1.start()
             t2.start()
+            t3.start()
 
             t1.join()
             t2.join()
             t3.join()
             break
 
-        elif object.signature == '4':
+        elif obj.signature == '4':
             t1 = threading.Thread(target=soundCtrl.play, args=("Darude Sandstorm", ))
             t2 = threading.Thread(target=motorCtrl.moveArm, args=(4000, 1))
             t3 = threading.Thread(target=ledsCtrl.handle_music, args=("Darude Sandstorm", ))
@@ -97,7 +98,7 @@ def filter(frame):
             t4.join()
             break
 
-        elif object.signature == '6':
+        elif obj.signature == '6':
             #blue_action()
             t1 = threading.Thread(target=soundCtrl.play, args=("Super Mario Underworld", ))
             t2 = threading.Thread(target=motorCtrl.moveArm, args=(4000, 1))
@@ -124,18 +125,14 @@ def processFrame (objectsFromFrame = []):
     
     frame = []
     for line in objectsFromFrame:
-        print(line)
+        #print(line)
         objectAttributeList = re.findall(r'[0-9]+', line)
         if len(objectAttributeList) > 4: 
-            object = Object(objectAttributeList[0],objectAttributeList[1],
+            obj = Object(objectAttributeList[0],objectAttributeList[1],
                         objectAttributeList[2],objectAttributeList[3],
                         objectAttributeList[4])
-    frame.append(object)
+    frame.append(obj)
     return frame
-
-    
-        
-    #print(dataRaw)
 
 
 try:
@@ -144,15 +141,15 @@ except OSError as oe:
     if oe.errno != errno.EEXIST:
         raise
 
-print("Waiting for camera connection")
+#print("Waiting for camera connection")
 with open(FIFO) as fifo:
-    print("Camera has been connected")
+    #print("Camera has been connected")
     soundCtrl.playNote(500, 1000)
 
     while True:
         data = fifo.readline()
         if len(data) == 0:
-            print("Writer closed")
+            #print("Writer closed")
             break
         
         #.decode("utf-8")
