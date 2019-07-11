@@ -2,19 +2,23 @@ import re
 import os
 import errno
 import threading
-import nxt.locator
 import brick_control.soundControl as soundControl
 import brick_control.bluetoothConnection as bluetoothConnection
 import brick_control.motorControl as motorControl
-from high_leds import * 
+import brick_control.usbConnection as usbConnection
+from high_leds import *
+
 ID = '00:16:53:0C:93:59'
 FIFO = '/tmp/pixy'
 running_events = False
 
 
-#connect to brick via bluetooth
-#blueConn = bluetoothConnection.BluetoothConnection(ID)
-brick = nxt.locator.find_one_brick()
+#connect to brick via usb
+usbConn = usbConnection.USBConnection()
+brick = usbConn.connect()
+
+#create sound controller object
+soundCtrl = soundControl.SoundControl(brick)    
 
 #rotate robot
 #motor = motorControl.MotorControl(brick, 127)
@@ -38,12 +42,12 @@ class Object:
 
 def filter(frame):
     global running_events
+    global soundCtrl
         
     for object in frame:
         if object.signature == '4':
             #do stuff with sound
             blue_action()
-            soundCtrl = soundControl.SoundControl(brick)
             soundCtrl.playSuperMario()
     running_events = False
     
@@ -66,8 +70,6 @@ def processFrame (objectsFromFrame = []):
     
         
     #print(dataRaw)
-
-
 
 
 try:
