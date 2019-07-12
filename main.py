@@ -22,7 +22,7 @@ brick = usbConn.connect()
 soundCtrl = soundControl.SoundControl(brick)
 
 #create motor controller object
-motorCtrl = motorControl.MotorControl(brick, 120)
+motorCtrl = motorControl.MotorControl(brick, 80)
 
 #create leds controller object
 ledsCtrl = ledsControl.LEDsControl(brick)
@@ -56,15 +56,10 @@ def dance():
     global motorCtrl
 
     motorCtrl.spinAround(180, 1)
-    sleep(1)
-    motorCtrl.spinAround(60, -1)
-    sleep(1)
+    motorCtrl.spinAround(100, -1)
     motorCtrl.spinAround(80, 1)
-    sleep(1)
     motorCtrl.spinAround(60, -1)
-    sleep(1)
-    motorCtrl.spinAround(20, 1)
-    sleep(1)
+    motorCtrl.spinAround(60, 1)
     motorCtrl.spinAround(160, -1)
 
 def waveArm(full):
@@ -80,15 +75,10 @@ def minorShake():
     global motorCtrl
 
     motorCtrl.spinAround(60, 1)
-    sleep(1)
-    motorCtrl.spinAround(20, -1)
-    sleep(1)
+    motorCtrl.spinAround(60, -1)
     motorCtrl.spinAround(40, 1)
-    sleep(1)
     motorCtrl.spinAround(50, -1)
-    sleep(1)
-    motorCtrl.spinAround(10, 1)
-    sleep(1)
+    motorCtrl.spinAround(50, 1)
     motorCtrl.spinAround(40, -1)
         
 
