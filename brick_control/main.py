@@ -8,18 +8,30 @@ import soundControl
 import bluetoothConnection
 import motorControl
 
+
+motorCtrl = motorControl.MotorControl(brick, 127)
+
+def darudeRun(distance):
+	global motorCtrl
+
+    motorCtrl.move(distance, 1)
+    motorCtrl.spinAround(180*6)
+    motorCtrl.move(distance, 1)
+    motorCtrl.spinAround(180*6)
+
+def dance():
+	global motorCtrl
+
+    motorCtrl.spinAround(180)
+    motorCtrl.spinAround(-60)
+    motorCtrl.spinAround(80)
+    motorCtrl.spinAround(-60)
+    motorCtrl.spinAround(20)
+    motorCtrl.spinAround(-160)
+
 #connect to brick via bluetooth
 blueConn = bluetoothConnection.BluetoothConnection(ID)
 brick = blueConn.connect()
 
-#do stuff with sound
-soundCtrl = soundControl.SoundControl(brick)
-#soundCtrl.play("Darude Sandstorm")
 
-#rotate robot
-#motor = motorControl.MotorControl(brick, 127)
-#motor.moveArm(5000, 1)
-
-#motor.move(5000, 1)
-#motor.spinAround(5000)
-#motor.move(5000, -1)
+dance()

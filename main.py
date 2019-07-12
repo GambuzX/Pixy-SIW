@@ -41,12 +41,16 @@ class Object:
         self.signature = signature
 
 def darudeRun(distance):
+    global motorCtrl
+
     motorCtrl.move(distance, 1)
     motorCtrl.spinAround(180*6)
     motorCtrl.move(distance, 1)
     motorCtrl.spinAround(180*6)
 
 def dance():
+    global motorCtrl
+    
     motorCtrl.spinAround(180)
     motorCtrl.spinAround(-60)
     motorCtrl.spinAround(80)
