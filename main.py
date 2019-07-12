@@ -6,6 +6,7 @@ import brick_control.soundControl as soundControl
 import brick_control.bluetoothConnection as bluetoothConnection
 import brick_control.motorControl as motorControl
 import brick_control.usbConnection as usbConnection
+import brick_control.colorControl as colorControl
 import ledsControl
 
 #global variables
@@ -25,6 +26,9 @@ motorCtrl = motorControl.MotorControl(brick, 120)
 
 #create leds controller object
 ledsCtrl = ledsControl.LEDsControl(brick)
+
+#create color controller object
+colorCtrl = colorControl.ColorControl(brick)
 
 
 class Object:
@@ -52,29 +56,39 @@ def dance():
     global motorCtrl
 
     motorCtrl.spinAround(180, 1)
+    sleep(1)
     motorCtrl.spinAround(60, -1)
+    sleep(1)
     motorCtrl.spinAround(80, 1)
+    sleep(1)
     motorCtrl.spinAround(60, -1)
+    sleep(1)
     motorCtrl.spinAround(20, 1)
+    sleep(1)
     motorCtrl.spinAround(160, -1)
 
 def waveArm(full):
     global motorCtrl
 
-    motorCtrl.moveArm(4000, 1)
-    motorCtrl.moveArm(4000, -1)
-    motorCtrl.moveArm(1000, 1)
+    motorCtrl.moveArm(650, 1)
+    motorCtrl.moveArm(650, -1)
+    motorCtrl.moveArm(170, 1)
     if full:
-        motorCtrl.moveArm(800, -1)
+        motorCtrl.moveArm(130, -1)
 
 def minorShake():
     global motorCtrl
 
     motorCtrl.spinAround(60, 1)
+    sleep(1)
     motorCtrl.spinAround(20, -1)
+    sleep(1)
     motorCtrl.spinAround(40, 1)
+    sleep(1)
     motorCtrl.spinAround(50, -1)
+    sleep(1)
     motorCtrl.spinAround(10, 1)
+    sleep(1)
     motorCtrl.spinAround(40, -1)
         
 
@@ -173,6 +187,10 @@ with open(FIFO) as fifo:
 
     while True:
         data = fifo.readline()
+        #color = colorCtrl.get_color()
+
+        #print color
+
         if len(data) == 0:
             #print("Writer closed")
             break
