@@ -52,11 +52,11 @@ def dance():
     global motorCtrl
 
     motorCtrl.spinAround(180)
-    motorCtrl.spinAround(-60)
+    motorCtrl.spinReverse(60)
     motorCtrl.spinAround(80)
-    motorCtrl.spinAround(-60)
+    motorCtrl.spinReverse(60)
     motorCtrl.spinAround(20)
-    motorCtrl.spinAround(-160)
+    motorCtrl.spinReverse(160)
 
 def waveArm():
     global motorCtrl
@@ -64,17 +64,17 @@ def waveArm():
     motorCtrl.moveArm(4000, 1)
     motorCtrl.moveArm(4000, -1)
     motorCtrl.moveArm(1000, 1)
-    motorCtrl.moveArm(1000, -1)
+    motorCtrl.moveArm(800, -1)
 
 def minorShake():
     global motorCtrl
 
     motorCtrl.spinAround(60)
-    motorCtrl.spinAround(-20)
+    motorCtrl.spinReverse(20)
     motorCtrl.spinAround(40)
-    motorCtrl.spinAround(-50)
+    motorCtrl.spinReverse(50)
     motorCtrl.spinAround(10)
-    motorCtrl.spinAround(-40)
+    motorCtrl.spinReverse(40)
         
 
 def filter(frame):

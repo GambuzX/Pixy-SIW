@@ -9,7 +9,19 @@ class MotorControl(object):
 
 	def spinAround(self, degrees):
 		t1 = threading.Thread(target=self.turnMotor, args=(PORT_C, self.power, degrees,))
-		t2 = threading.Thread(target=self.turnMotor, args=(PORT_A, -1 * self.power, degrees,))
+		#t2 = threading.Thread(target=self.turnMotor, args=(PORT_A, -1 * self.power, degrees,))
+
+		t1.start()
+		#t2.start()
+
+		t1.join()
+		#t2.join()
+
+
+
+	def spinReverse(self, degrees):
+		t1 = threading.Thread(target=self.turnMotor, args=(PORT_C, -self.power, degrees,))
+		#t2 = threading.Thread(target=self.turnMotor, args=(PORT_A, self.power, degrees,))
 
 		t1.start()
 		#t2.start()
@@ -33,5 +45,5 @@ class MotorControl(object):
 
 	def turnMotor(self, port, power, degrees):
 		motor = Motor(self.brick, port)
-		motor.turn(power, degrees)
+		motor.turn(self.power, degrees)
 
