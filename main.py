@@ -44,37 +44,38 @@ def darudeRun(distance):
     global motorCtrl
 
     motorCtrl.move(distance, 1)
-    motorCtrl.spinAround(180*6)
+    motorCtrl.spinAround(180, 1)
     motorCtrl.move(distance, 1)
-    motorCtrl.spinAround(180*6)
+    motorCtrl.spinAround(180, 1)
 
 def dance():
     global motorCtrl
 
-    motorCtrl.spinAround(180)
-    motorCtrl.spinReverse(60)
-    motorCtrl.spinAround(80)
-    motorCtrl.spinReverse(60)
-    motorCtrl.spinAround(20)
-    motorCtrl.spinReverse(160)
+    motorCtrl.spinAround(180, 1)
+    motorCtrl.spinAround(60, -1)
+    motorCtrl.spinAround(80, 1)
+    motorCtrl.spinAround(60, -1)
+    motorCtrl.spinAround(20, 1)
+    motorCtrl.spinAround(160, -1)
 
-def waveArm():
+def waveArm(full):
     global motorCtrl
 
     motorCtrl.moveArm(4000, 1)
     motorCtrl.moveArm(4000, -1)
     motorCtrl.moveArm(1000, 1)
-    motorCtrl.moveArm(800, -1)
+    if full:
+        motorCtrl.moveArm(800, -1)
 
 def minorShake():
     global motorCtrl
 
-    motorCtrl.spinAround(60)
-    motorCtrl.spinReverse(20)
-    motorCtrl.spinAround(40)
-    motorCtrl.spinReverse(50)
-    motorCtrl.spinAround(10)
-    motorCtrl.spinReverse(40)
+    motorCtrl.spinAround(60, 1)
+    motorCtrl.spinAround(20, -1)
+    motorCtrl.spinAround(40, 1)
+    motorCtrl.spinAround(50, -1)
+    motorCtrl.spinAround(10, 1)
+    motorCtrl.spinAround(40, -1)
         
 
 def filter(frame):
@@ -87,10 +88,10 @@ def filter(frame):
 
         if obj.signature == '1':
             #half spin
-            motorCtrl.spinAround(180*6)
+            motorCtrl.spinAround(180, 1)
 
             t1 = threading.Thread(target=soundCtrl.play, args=("Super Mario", ))
-            t2 = threading.Thread(target=waveArm)
+            t2 = threading.Thread(target=waveArm, args=(True,))
             t3 = threading.Thread(target=ledsCtrl.handle_music, args=("Super Mario", ))
             t4 = threading.Thread(target=minorShake)
 
@@ -107,9 +108,9 @@ def filter(frame):
 
         elif obj.signature == '4':
             t1 = threading.Thread(target=soundCtrl.play, args=("Darude Sandstorm", ))
-            t2 = threading.Thread(target=waveArm)
+            t2 = threading.Thread(target=waveArm, args=(False,))
             t3 = threading.Thread(target=ledsCtrl.handle_music, args=("Darude Sandstorm", ))
-            t4 = threading.Thread(target=darudeRun, args=(2000,))
+            t4 = threading.Thread(target=darudeRun, args=(360,))
 
             t1.start()
             t2.start()
@@ -125,7 +126,7 @@ def filter(frame):
         elif obj.signature == '6':
             #blue_action()
             t1 = threading.Thread(target=soundCtrl.play, args=("Super Mario Underworld", ))
-            t2 = threading.Thread(target=waveArm)
+            t2 = threading.Thread(target=waveArm, args=(False,))
             t3 = threading.Thread(target=ledsCtrl.handle_music, args=("Super Mario Underworld", ))
             t4 = threading.Thread(target=dance)
 
