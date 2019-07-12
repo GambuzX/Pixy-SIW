@@ -65,9 +65,16 @@ def waveArm():
     motorCtrl.moveArm(4000, -1)
     motorCtrl.moveArm(1000, 1)
     motorCtrl.moveArm(1000, -1)
-    motorCtrl.moveArm(1000, 1)
-    motorCtrl.moveArm(1000, -1)
 
+def minorShake():
+    global motorCtrl
+
+    motorCtrl.spinAround(60)
+    motorCtrl.spinAround(-20)
+    motorCtrl.spinAround(40)
+    motorCtrl.spinAround(-50)
+    motorCtrl.spinAround(10)
+    motorCtrl.spinAround(-40)
         
 
 def filter(frame):
@@ -85,14 +92,17 @@ def filter(frame):
             t1 = threading.Thread(target=soundCtrl.play, args=("Super Mario", ))
             t2 = threading.Thread(target=waveArm)
             t3 = threading.Thread(target=ledsCtrl.handle_music, args=("Super Mario", ))
+            t4 = threading.Thread(target=minorShake)
 
             t1.start()
             t2.start()
             t3.start()
+            t4.start()
 
             t1.join()
             t2.join()
             t3.join()
+            t4.join()
             break
 
         elif obj.signature == '4':
